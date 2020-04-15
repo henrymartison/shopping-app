@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // marginTop: 13,
-    marginHorizontal: 10
+    marginHorizontal: 20
   },
   title: {
     marginLeft: 10,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     borderColor: "#e2e2e2",
     borderWidth: 0.5,
     borderRadius: 10,
-    marginHorizontal: 10
+    marginRight: 10
   },
   discountContainer: {
     height: 18,

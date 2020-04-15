@@ -46,10 +46,8 @@ const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: "orange",
     marginTop: 20,
-    marginHorizontal: 10
+    marginLeft: 20
   },
   title: {
     marginLeft: 10,
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
     borderColor: "#e2e2e2",
     borderWidth: 0.5,
     borderRadius: 10,
-    marginHorizontal: 10
+    marginRight: 10
   },
   detailContainer: {
     height: 30,

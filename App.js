@@ -5,7 +5,7 @@ import Home from "./src/screens/HomeScreen/Home";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
-import { Feather, AntDesign } from "@expo/vector-icons";
+import { Feather, AntDesign, Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
 
 import Loading from "./src/screens/AuthScreen/Loading";
@@ -15,17 +15,61 @@ import Profile from "./src/screens/ProfileScreens";
 import SearchScreen from "./src/screens/SearchScreen";
 import Saved from "./src/screens/SavedScreens";
 import Details from "./src/screens/DetailsScreen";
+import ReviewsScreen from "./src/screens/ReviewsScreen";
+import { TouchableOpacity } from "./src/components/common/TouchableOpacity";
+import colors from "./src/utils/colors";
+import CartScreen from "./src/screens/Cartscreen";
+import { createDrawerNavigator } from "react-navigation-drawer";
 
-const HomeStack = createStackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: { header: null }
+const DetailsStack = createStackNavigator(
+  {
+    Details: {
+      screen: Details,
+      navigationOptions: { header: null }
+    },
+    Reviews: ReviewsScreen
   },
-  Details: {
-    screen: Details,
-    navigationOptions: { header: null }
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      title: "Ratings & Reviews",
+      headerLeft: () => (
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{ paddingLeft: 12 }}
+        >
+          <Ionicons name="ios-arrow-back" size={25} color={colors.darkBlue} />
+        </TouchableOpacity>
+      )
+    })
   }
-});
+);
+
+const HomeStack = createStackNavigator(
+  {
+    Home: {
+      screen: Home,
+      navigationOptions: { header: null }
+    },
+    Details: {
+      screen: DetailsStack,
+      navigationOptions: { header: null }
+    },
+    Cart: CartScreen
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerTitleStyle: { color: colors.darkBlue, fontWeight: "500" },
+      headerLeft: () => (
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{ paddingLeft: 12 }}
+        >
+          <Ionicons name="ios-arrow-back" size={25} color={colors.darkBlue} />
+        </TouchableOpacity>
+      )
+    })
+  }
+);
 
 const AppContainer = createBottomTabNavigator(
   {
@@ -92,6 +136,10 @@ const AppContainer = createBottomTabNavigator(
   }
 );
 
+const DrawerNavigator = createDrawerNavigator({
+  Home: Home
+});
+
 const AuthStack = createStackNavigator({
   Login: Login,
   Register: Register
@@ -128,7 +176,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "rgba(225,225,225, 0.3)" }}>
         <StatusBar barStyle="dark-content" />
         <MainContainer />
       </View>
